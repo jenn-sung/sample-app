@@ -5,7 +5,16 @@ class ItemsController < ApplicationController
   end
 
   def create
-    items = item
+    item = Item.new(
+      name: params['name'],
+      price: params['price'],
+      description: ['description'],
+      image: params['image']
+      )
+    item.save
+
+    render json: item.as_json
+  end
 
 
 end
