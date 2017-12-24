@@ -4,6 +4,11 @@ class ItemsController < ApplicationController
     render json: items.as_json
   end
 
+  def show
+    item = Item.find_by(id: params[:id])
+    render json: item.as_json
+  end
+
   def create
     item = Item.new(
       name: params['name'],
@@ -15,6 +20,5 @@ class ItemsController < ApplicationController
 
     render json: item.as_json
   end
-
 
 end

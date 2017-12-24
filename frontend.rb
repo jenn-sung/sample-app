@@ -3,7 +3,8 @@ require 'pp'
 
 p "Hi. Welcome to my shop."
 p "[1] See all of my products!"
-p "[2] Create a new product!"
+p "[2] See a particular product."
+p "[3] Create a new product!"
 
 user_input = gets.chomp
 
@@ -12,6 +13,11 @@ if user_input == '1'
   response = Unirest.get("localhost:3000/items")
   pp response.body
 elsif user_input == '2'
+  p "Enter the id of the particular product you would like to see."
+  item_id = gets.chomp
+  response = Unirest.get("localhost:3000/items/#{item_id}")
+  pp response.body
+elsif user_input == '3'
   the_params = {}
   p "Enter the name of the new product"
   the_params['name'] = gets.chomp
@@ -23,4 +29,5 @@ elsif user_input == '2'
   the_params['image'] = gets.chomp
   response = Unirest.post("localhost:3000/items", parameters: the_params)
   pp response.body
+elsif user_input == '4'
 end
